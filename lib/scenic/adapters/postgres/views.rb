@@ -1,4 +1,4 @@
-require_relative "./lib/generators/scenic/view/view_generator.rb"
+require "lib/generators/scenic/view/view_generator.rb"
 
 module Scenic
   module Adapters
@@ -50,13 +50,21 @@ module Scenic
             namespaced_viewname = pg_identifier(viewname)
           end
 
+          teste = Dir.entries(Rails.root.join("db", "views"))
+                     .map { |name| version_regex(namespace).match(name).try(:[], "version").to_i }
+                     .max
+
           Scenic::View.new(
             name: namespaced_viewname,
-            definition: ::Scenic::Generators::ViewGenerator.new([namespace]).previous_version.to_s,
+            definition: teste.to_s,
             materialized: result["kind"] == "m",
           )
         end
 
+        def version_regex(namespace)
+          /\A#{plural_file_name}_v(?<version>\d+)\.sql\z/
+        end
+      
         def pg_identifier(name)
           return name if name =~ /^[a-zA-Z_][a-zA-Z0-9_]*$/
 
