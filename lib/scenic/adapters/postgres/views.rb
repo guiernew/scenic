@@ -50,7 +50,7 @@ module Scenic
 
           Scenic::View.new(
             name: namespaced_viewname,
-            definition: result["definition"].strip,
+            definition: 'select a from b',
             materialized: result["kind"] == "m",
           )
         end
