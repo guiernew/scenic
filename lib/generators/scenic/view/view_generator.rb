@@ -28,7 +28,7 @@ module Scenic
         if creating_new_view? || destroying_initial_view?
           migration_template(
             "db/migrate/create_view.erb",
-            "db/migrate/create_#{plural_file_name}.rb",
+            "db/migrate/create_GUI#{plural_file_name}.rb",
           )
         else
           migration_template(
