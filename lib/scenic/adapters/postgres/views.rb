@@ -48,13 +48,13 @@ module Scenic
             namespaced_viewname = pg_identifier(viewname)
           end
 
-          teste = Dir.entries(Rails.root.join("db", "views"))
-                     .map { |name| version_regex(namespace).match(name).try(:[], "version").to_i }
+          previous_version = Dir.entries(Rails.root.join("db", "views"))
+                     .map { |name| version_regex(namespace).match(namespace).try(:[], "version").to_i }
                      .max
 
           Scenic::View.new(
             name: namespaced_viewname,
-            definition: teste.to_s,
+            definition: Scenic::Definition.new(namespace, previous_version),
             materialized: result["kind"] == "m",
           )
         end
