@@ -50,7 +50,7 @@ module Scenic
 
           Scenic::View.new(
             name: namespaced_viewname,
-            definition: 'select a from public.b',
+            definition: ::Scenic::Generators::ViewGenerator.new([namespace]).previous_version,
             materialized: result["kind"] == "m",
           )
         end
