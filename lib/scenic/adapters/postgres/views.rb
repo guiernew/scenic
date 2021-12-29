@@ -60,7 +60,7 @@ module Scenic
         end
 
         def version_regex(namespace)
-          /\A#{plural_file_name}_v(?<version>\d+)\.sql\z/
+          /\A#{namespace}_v(?<version>\d+)\.sql\z/
         end
       
         def pg_identifier(name)
