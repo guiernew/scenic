@@ -1,3 +1,5 @@
+require_relative "./lib/generators/scenic/view/view_generator.rb"
+
 module Scenic
   module Adapters
     class Postgres
