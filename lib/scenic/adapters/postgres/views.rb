@@ -54,7 +54,7 @@ module Scenic
 
           Scenic::View.new(
             name: namespaced_viewname,
-            definition: Scenic::Definition.new(viewname, previous_version),
+            definition: Scenic::Definition.new(viewname, previous_version).to_sql,
             materialized: result["kind"] == "m",
           )
         end
