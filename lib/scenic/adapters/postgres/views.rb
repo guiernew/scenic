@@ -51,7 +51,7 @@ module Scenic
           previous_version = Dir.entries(Rails.root.join("db", "views"))
                      .map { |name| version_regex(viewname).match(viewname).try(:[], "version").to_i }
                      .max
-          previous_version.next if previous_version.zero?
+          previous_version = 1 if previous_version.zero?
   
           Scenic::View.new(
             name: namespaced_viewname,
