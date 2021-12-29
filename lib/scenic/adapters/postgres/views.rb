@@ -50,7 +50,7 @@ module Scenic
 
           Scenic::View.new(
             name: namespaced_viewname,
-            definition: ::Scenic::Generators::ViewGenerator.new([namespace]).previous_version,
+            definition: ::Scenic::Generators::ViewGenerator.new([namespace]).previous_version.to_s,
             materialized: result["kind"] == "m",
           )
         end
