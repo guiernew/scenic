@@ -49,7 +49,7 @@ module Scenic
           end
 
           previous_version = Dir.entries(Rails.root.join("db", "views"))
-                     .map { |name| version_regex(viewname).match(viewname).try(:[], "version").to_i }
+                     .map { |name| version_regex(viewname).match(name).try(:[], "version").to_i }
                      .max
           previous_version = 1 if previous_version.zero?
   
